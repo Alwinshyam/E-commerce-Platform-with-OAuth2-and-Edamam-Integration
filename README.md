@@ -1,0 +1,1 @@
+Implemented a Spring Boot application integrating Google OAuth2 for secure user authentication and Edamam API for recipe recommendations. Developed e-commerce functionalities, including product and category management, leveraging H2 Database for data persistence. Enhanced security and performance using advanced Spring Security configurations.
