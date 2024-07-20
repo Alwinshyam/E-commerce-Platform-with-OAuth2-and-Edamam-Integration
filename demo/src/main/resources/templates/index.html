@@ -1,0 +1,828 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Home Page</title>-->
+
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-size: cover;-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--        }-->
+
+<!--        header nav {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */-->
+<!--            padding: 10px;-->
+<!--            border: 2px solid #ccc; /* Border for nav */-->
+<!--            border-radius: 10px; /* Optional: Rounded corners */-->
+<!--        }-->
+
+<!--        header nav a {-->
+<!--            margin-right: 20px;-->
+<!--            text-decoration: none;-->
+<!--            color: white; /* White text color for better readability */-->
+<!--        }-->
+
+<!--        header nav .logo {-->
+<!--            width: 50px;-->
+<!--            height: 50px;-->
+<!--            margin-right: 20px;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            display: flex;-->
+<!--            justify-content: space-around;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .section {-->
+<!--            flex: 1;-->
+<!--            margin: 0 10px;-->
+<!--            text-align: center;-->
+<!--            padding: 20px;-->
+<!--            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */-->
+<!--            border: 2px solid #ccc;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+
+<!--        .section img {-->
+<!--            width: 100%;-->
+<!--            height: auto;-->
+<!--            object-fit: cover;-->
+<!--            border-radius: 10px;-->
+<!--            max-height: 400px;-->
+<!--            transition: opacity 1s ease-in-out; /* Smooth transition */-->
+<!--            opacity: 1;-->
+<!--        }-->
+
+<!--        .section img.fade-out {-->
+<!--            opacity: 0;-->
+<!--        }-->
+
+<!--        footer {-->
+<!--            text-align: center;-->
+<!--            padding: 10px;-->
+<!--            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */-->
+<!--            border: 2px solid #ccc; /* Border for footer */-->
+<!--            border-radius: 10px; /* Optional: Rounded corners */-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        footer img {-->
+<!--            width: 30px;-->
+<!--            height: 30px;-->
+<!--            margin-right: 10px;-->
+<!--            vertical-align: middle;-->
+<!--        }-->
+
+<!--        footer .address {-->
+<!--            display: block;-->
+<!--            margin-top: 10px;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <script>-->
+<!--        let vegetableImages = [-->
+<!--            "/images/vegetable1.jpg",-->
+<!--            "/images/vegetable2.jpg",-->
+<!--            "/images/vegetable3.jpg",-->
+<!--            "/images/vegetable4.jpg"-->
+<!--        ];-->
+
+<!--        let meatImages = [-->
+<!--            "/images/meat1.jpg",-->
+<!--            "/images/meat2.jpg",-->
+<!--            "/images/meat3.jpg",-->
+<!--            "/images/meat4.jpg"-->
+<!--        ];-->
+
+<!--        function getRandomIndex(images) {-->
+<!--            return Math.floor(Math.random() * images.length);-->
+<!--        }-->
+
+<!--        function changeImage() {-->
+<!--            const vegetableImg = document.querySelector('#vegetable img');-->
+<!--            const meatImg = document.querySelector('#meat img');-->
+
+<!--            vegetableImg.classList.add('fade-out');-->
+<!--            meatImg.classList.add('fade-out');-->
+
+<!--            setTimeout(() => {-->
+<!--                vegetableImg.src = vegetableImages[getRandomIndex(vegetableImages)];-->
+<!--                meatImg.src = meatImages[getRandomIndex(meatImages)];-->
+<!--                vegetableImg.classList.remove('fade-out');-->
+<!--                meatImg.classList.remove('fade-out');-->
+<!--            }, 1000); // Match the transition duration-->
+<!--        }-->
+
+<!--        window.onload = function() {-->
+<!--            setInterval(changeImage, 3000);-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <nav>-->
+<!--        <a href="/"><img src="/images/logo.png" alt="Logo" class="logo"></a>-->
+<!--        <a href="/">Home</a>-->
+<!--        <a href="/shop">Shop</a>-->
+<!--        <span th:if="${#request.remoteUser != null}">-->
+<!--            <a href="/logout">Logout</a>-->
+<!--        </span>-->
+<!--        <span th:if="${#request.remoteUser == null}">-->
+<!--            <a href="/login">Login</a>-->
+<!--        </span>-->
+<!--        <a href="/cart">Cart</a>-->
+<!--    </nav>-->
+<!--</header>-->
+<!--<main>-->
+<!--    <h1>Welcome to Our Store</h1>-->
+<!--    <div class="container">-->
+<!--        <div class="section" id="vegetable">-->
+<!--            <h2>Vegetables</h2>-->
+<!--            <img src="/images/vegetable1.jpg" alt="Vegetable 1">-->
+<!--            <p>Fresh Vegetables</p>-->
+<!--        </div>-->
+<!--        <div class="section" id="meat">-->
+<!--            <h2>Meat</h2>-->
+<!--            <img src="/images/meat1.jpg" alt="Meat 1">-->
+<!--            <p>Quality Meat</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
+<!--<footer>-->
+<!--    <p>&copy; 2024 Store</p>-->
+<!--    <a href="https://www.instagram.com" target="_blank">-->
+<!--        <img src="/images/instagram.png" alt="Instagram">-->
+<!--    </a>-->
+<!--    <span class="address">123 Market Street, Food City, FC 12345</span>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Home Page</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-size: cover;-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-attachment: fixed;-->
+<!--        }-->
+
+<!--        header nav {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */-->
+<!--            padding: 10px;-->
+<!--            border: 2px solid #ccc; /* Border for nav */-->
+<!--            border-radius: 10px; /* Optional: Rounded corners */-->
+<!--        }-->
+
+<!--        header nav a {-->
+<!--            margin-right: 20px;-->
+<!--            text-decoration: none;-->
+<!--            color: white; /* White text color for better readability */-->
+<!--        }-->
+
+<!--        header nav .logo {-->
+<!--            width: 50px;-->
+<!--            height: 50px;-->
+<!--            margin-right: 20px;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            display: flex;-->
+<!--            justify-content: space-around;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        .section {-->
+<!--            flex: 1;-->
+<!--            margin: 0 10px;-->
+<!--            text-align: center;-->
+<!--            padding: 20px;-->
+<!--            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */-->
+<!--            border: 2px solid #ccc;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+
+<!--        .section img {-->
+<!--            width: 100%;-->
+<!--            height: auto;-->
+<!--            object-fit: cover;-->
+<!--            border-radius: 10px;-->
+<!--            max-height: 400px;-->
+<!--            transition: opacity 1s ease-in-out; /* Smooth transition */-->
+<!--            opacity: 1;-->
+<!--        }-->
+
+<!--        .section img.fade-out {-->
+<!--            opacity: 0;-->
+<!--        }-->
+
+<!--        footer {-->
+<!--            text-align: center;-->
+<!--            padding: 10px;-->
+<!--            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */-->
+<!--            border: 2px solid #ccc; /* Border for footer */-->
+<!--            border-radius: 10px; /* Optional: Rounded corners */-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        footer img {-->
+<!--            width: 30px;-->
+<!--            height: 30px;-->
+<!--            margin-right: 10px;-->
+<!--            vertical-align: middle;-->
+<!--        }-->
+
+<!--        footer .address {-->
+<!--            display: block;-->
+<!--            margin-top: 10px;-->
+<!--        }-->
+
+<!--        /* Search and Results Styles */-->
+<!--        .search-container {-->
+<!--            text-align: center;-->
+<!--            margin: 40px 0;-->
+<!--        }-->
+
+<!--        .search-container input[type="text"] {-->
+<!--            background-color: #fff;-->
+<!--            border: 2px solid #ccc;-->
+<!--            border-radius: 8px;-->
+<!--            font-size: 16px;-->
+<!--            padding: 12px;-->
+<!--            width: 300px;-->
+<!--        }-->
+
+<!--        .search-container button[type="button"] {-->
+<!--            background-color: #007bff;-->
+<!--            border: none;-->
+<!--            border-radius: 8px;-->
+<!--            color: #fff;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 16px;-->
+<!--            padding: 12px 20px;-->
+<!--            transition: background-color 0.2s;-->
+<!--        }-->
+
+<!--        .search-container button[type="button"]:hover {-->
+<!--            background-color: #0069d9;-->
+<!--        }-->
+
+<!--        .warning {-->
+<!--            color: red;-->
+<!--            margin-top: 20px;-->
+<!--            display: none;-->
+<!--        }-->
+
+<!--        .loading {-->
+<!--            display: none;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+
+<!--        #results {-->
+<!--            display: grid;-->
+<!--            gap: 40px;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));-->
+<!--            margin: 40px 0;-->
+<!--        }-->
+
+<!--        #results > div {-->
+<!--            background-color: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        #results img {-->
+<!--            border-radius: 8px;-->
+<!--            margin-bottom: 20px;-->
+<!--            object-fit: cover;-->
+<!--            height: 200px;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        #results h3 {-->
+<!--            color: #333;-->
+<!--            font-size: 24px;-->
+<!--            margin: 0;-->
+<!--        }-->
+
+<!--        #results ul {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        #results li {-->
+<!--            list-style: none;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+
+<!--        #results a {-->
+<!--            background-color: #007bff;-->
+<!--            border-radius: 8px;-->
+<!--            color: #fff;-->
+<!--            font-size: 16px;-->
+<!--            padding: 12px 20px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            transition: background-color 0.2s;-->
+<!--        }-->
+
+<!--        #results a:hover {-->
+<!--            background-color: #0069d9;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <script>-->
+<!--        let vegetableImages = [-->
+<!--            "/images/vegetable1.jpg",-->
+<!--            "/images/vegetable2.jpg",-->
+<!--            "/images/vegetable3.jpg",-->
+<!--            "/images/vegetable4.jpg"-->
+<!--        ];-->
+
+<!--        let meatImages = [-->
+<!--            "/images/meat1.jpg",-->
+<!--            "/images/meat2.jpg",-->
+<!--            "/images/meat3.jpg",-->
+<!--            "/images/meat4.jpg"-->
+<!--        ];-->
+
+<!--        function getRandomIndex(images) {-->
+<!--            return Math.floor(Math.random() * images.length);-->
+<!--        }-->
+
+<!--        function changeImage() {-->
+<!--            const vegetableImg = document.querySelector('#vegetable img');-->
+<!--            const meatImg = document.querySelector('#meat img');-->
+
+<!--            vegetableImg.classList.add('fade-out');-->
+<!--            meatImg.classList.add('fade-out');-->
+
+<!--            setTimeout(() => {-->
+<!--                vegetableImg.src = vegetableImages[getRandomIndex(vegetableImages)];-->
+<!--                meatImg.src = meatImages[getRandomIndex(meatImages)];-->
+<!--                vegetableImg.classList.remove('fade-out');-->
+<!--                meatImg.classList.remove('fade-out');-->
+<!--            }, 1000); // Match the transition duration-->
+<!--        }-->
+
+<!--        window.onload = function() {-->
+<!--            setInterval(changeImage, 3000);-->
+<!--        }-->
+
+<!--        async function searchRecipes() {-->
+<!--            const searchValue = document.querySelector('#search').value.trim();-->
+<!--            const warningMessage = document.querySelector('.warning');-->
+<!--            const loadingMessage = document.querySelector('.loading');-->
+<!--            const resultsContainer = document.querySelector('#results');-->
+
+<!--            if (searchValue === '') {-->
+<!--                warningMessage.textContent = 'Please enter a valid search term.';-->
+<!--                warningMessage.style.display = 'block';-->
+<!--                return;-->
+<!--            } else {-->
+<!--                warningMessage.style.display = 'none';-->
+<!--            }-->
+
+<!--            loadingMessage.style.display = 'block';-->
+<!--            resultsContainer.innerHTML = '';-->
+
+<!--            try {-->
+<!--                const response = await fetch(`https://api.edamam.com/search?q=${searchValue}&app_id=15d25c7f&app_key=e255a95a0d85e1db857626f096331aab&from=0&to=10`);-->
+<!--                const data = await response.json();-->
+<!--                loadingMessage.style.display = 'none';-->
+
+<!--                if (data.hits.length === 0) {-->
+<!--                    warningMessage.textContent = 'No recipes found. Please check your spelling or try different ingredients.';-->
+<!--                    warningMessage.style.display = 'block';-->
+<!--                } else {-->
+<!--                    displayRecipes(data.hits);-->
+<!--                }-->
+<!--            } catch (error) {-->
+<!--                loadingMessage.style.display = 'none';-->
+<!--                warningMessage.textContent = 'An error occurred. Please try again later.';-->
+<!--                warningMessage.style.display = 'block';-->
+<!--            }-->
+<!--        }-->
+
+<!--        function displayRecipes(recipes) {-->
+<!--            let html = '';-->
+<!--            recipes.forEach((recipe) => {-->
+<!--                html += `-->
+<!--                <div>-->
+<!--                    <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">-->
+<!--                    <h3>${recipe.recipe.label}</h3>-->
+<!--                    <ul>-->
+<!--                        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}-->
+<!--                    </ul>-->
+<!--                    <a href="${recipe.recipe.url}" target="_blank">View Recipe</a>-->
+<!--                </div>-->
+<!--                `;-->
+<!--            });-->
+<!--            document.querySelector('#results').innerHTML = html;-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--    <nav>-->
+<!--        <a href="/"><img src="/images/logo.png" alt="Logo" class="logo"></a>-->
+<!--        <a href="/">Home</a>-->
+<!--        <a href="/shop">Shop</a>-->
+<!--        <span th:if="${#request.remoteUser != null}">-->
+<!--            <a href="/logout">Logout</a>-->
+<!--        </span>-->
+<!--        <span th:if="${#request.remoteUser == null}">-->
+<!--            <a href="/login">Login</a>-->
+<!--        </span>-->
+<!--        <a href="/cart">Cart</a>-->
+<!--    </nav>-->
+<!--</header>-->
+<!--<main>-->
+<!--    <h1>Welcome to Our Store</h1>-->
+<!--    <div class="container">-->
+<!--        <div class="section" id="vegetable">-->
+<!--            <h2>Vegetables</h2>-->
+<!--            <img src="/images/vegetable1.jpg" alt="Vegetable 1">-->
+<!--            <p>Fresh Vegetables</p>-->
+<!--        </div>-->
+<!--        <div class="section" id="meat">-->
+<!--            <h2>Meat</h2>-->
+<!--            <img src="/images/meat1.jpg" alt="Meat 1">-->
+<!--            <p>Quality Meat</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="search-container">-->
+<!--        <h1>Recipe Finder</h1>-->
+<!--        <form onsubmit="event.preventDefault(); searchRecipes();">-->
+<!--            <input type="text" id="search" placeholder="Enter ingredients">-->
+<!--            <button type="button" onclick="searchRecipes()" class="btn">Search</button>-->
+<!--        </form>-->
+<!--        <div class="warning">Please enter a valid search term.</div>-->
+<!--        <div class="loading">Loading...</div>-->
+<!--        <div id="results"></div>-->
+<!--    </div>-->
+<!--</main>-->
+<!--<footer>-->
+<!--    <p>&copy; 2024 Store</p>-->
+<!--    <a href="https://www.instagram.com" target="_blank">-->
+<!--        <img src="/images/instagram.png" alt="Instagram">-->
+<!--    </a>-->
+<!--    <span class="address">123 Market Street, Food City, FC 12345</span>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */
+            padding: 10px;
+            border: 2px solid #ccc; /* Border for nav */
+            border-radius: 10px; /* Optional: Rounded corners */
+        }
+
+        header nav a,
+        header nav button {
+            margin-right: 20px;
+            text-decoration: none;
+            color: white; /* White text color for better readability */
+        }
+
+        header nav .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .section {
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .section img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            max-height: 400px;
+            transition: opacity 1s ease-in-out; /* Smooth transition */
+            opacity: 1;
+        }
+
+        .section img.fade-out {
+            opacity: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent blue background */
+            border: 2px solid #ccc; /* Border for footer */
+            border-radius: 10px; /* Optional: Rounded corners */
+            margin-top: 20px;
+        }
+
+        footer img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        footer .address {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        /* Search and Results Styles */
+        .search-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .search-container input[type="text"] {
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 12px;
+            width: 300px;
+        }
+
+        .search-container button[type="button"] {
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px 20px;
+            transition: background-color 0.2s;
+        }
+
+        .search-container button[type="button"]:hover {
+            background-color: #0069d9;
+        }
+
+        .warning {
+            color: red;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #results {
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            margin: 40px 0;
+        }
+
+        #results > div {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        #results img {
+            border-radius: 8px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            height: 200px;
+            width: 100%;
+        }
+
+        #results h3 {
+            color: #333;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        #results ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #results li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #results a {
+            background-color: #007bff;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        #results a:hover {
+            background-color: #0069d9;
+        }
+
+        /* Button Styles */
+        .scroll-button {
+            background-color: rgba(0, 123, 255, 0.8); /* Matching the header color */
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 12px 20px;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .scroll-button:hover {
+            background-color: rgba(0, 105, 217, 0.8); /* Darker shade for hover effect */
+        }
+    </style>
+    <script>
+        let vegetableImages = [
+            "/images/vegetable1.jpg",
+            "/images/vegetable2.jpg",
+            "/images/vegetable3.jpg",
+            "/images/vegetable4.jpg"
+        ];
+
+        let meatImages = [
+            "/images/meat1.jpg",
+            "/images/meat2.jpg",
+            "/images/meat3.jpg",
+            "/images/meat4.jpg"
+        ];
+
+        function getRandomIndex(images) {
+            return Math.floor(Math.random() * images.length);
+        }
+
+        function changeImage() {
+            const vegetableImg = document.querySelector('#vegetable img');
+            const meatImg = document.querySelector('#meat img');
+
+            vegetableImg.classList.add('fade-out');
+            meatImg.classList.add('fade-out');
+
+            setTimeout(() => {
+                vegetableImg.src = vegetableImages[getRandomIndex(vegetableImages)];
+                meatImg.src = meatImages[getRandomIndex(meatImages)];
+                vegetableImg.classList.remove('fade-out');
+                meatImg.classList.remove('fade-out');
+            }, 1000); // Match the transition duration
+        }
+
+        window.onload = function() {
+            setInterval(changeImage, 3000);
+        }
+
+        async function searchRecipes() {
+            const searchValue = document.querySelector('#search').value.trim();
+            const warningMessage = document.querySelector('.warning');
+            const loadingMessage = document.querySelector('.loading');
+            const resultsContainer = document.querySelector('#results');
+
+            if (searchValue === '') {
+                warningMessage.textContent = 'Please enter a valid search term.';
+                warningMessage.style.display = 'block';
+                return;
+            } else {
+                warningMessage.style.display = 'none';
+            }
+
+            loadingMessage.style.display = 'block';
+            resultsContainer.innerHTML = '';
+
+            try {
+                const response = await fetch(`https://api.edamam.com/search?q=${searchValue}&app_id=15d25c7f&app_key=e255a95a0d85e1db857626f096331aab&from=0&to=10`);
+                const data = await response.json();
+                loadingMessage.style.display = 'none';
+
+                if (data.hits.length === 0) {
+                    warningMessage.textContent = 'No recipes found. Please check your spelling or try different ingredients.';
+                    warningMessage.style.display = 'block';
+                } else {
+                    displayRecipes(data.hits);
+                }
+            } catch (error) {
+                loadingMessage.style.display = 'none';
+                warningMessage.textContent = 'An error occurred. Please try again later.';
+                warningMessage.style.display = 'block';
+            }
+        }
+
+        function displayRecipes(recipes) {
+            let html = '';
+            recipes.forEach((recipe) => {
+                html += `
+                <div>
+                    <img src="${recipe.recipe.image}" alt="${recipe.recipe.label}">
+                    <h3>${recipe.recipe.label}</h3>
+                    <ul>
+                        ${recipe.recipe.ingredientLines.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                    <a href="${recipe.recipe.url}" target="_blank">View Recipe</a>
+                </div>
+                `;
+            });
+            document.querySelector('#results').innerHTML = html;
+        }
+
+        function scrollToSearch() {
+            const searchContainer = document.querySelector('.search-container');
+            searchContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/"><img src="/images/logo.png" alt="Logo" class="logo"></a>
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <span th:if="${#request.remoteUser != null}">
+            <a href="/logout">Logout</a>
+        </span>
+        <span th:if="${#request.remoteUser == null}">
+            <a href="/login">Login</a>
+        </span>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div id="vegetable" class="section">
+            <h2>Vegetables</h2>
+            <img src="/images/vegetable1.jpg" alt="Vegetable Image">
+        </div>
+        <div id="meat" class="section">
+            <h2>Meat</h2>
+            <img src="/images/meat1.jpg" alt="Meat Image">
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Enter ingredients, e.g., chicken, broccoli">
+        <button type="button" onclick="searchRecipes()">Search</button>
+        <div class="warning"></div>
+        <div class="loading">Loading...</div>
+    </div>
+
+    <div id="results"></div>
+</main>
+<footer>
+<!--    <div>-->
+<!--        <a href="https://linkedin.com/in/yourprofile"><img src="/images/linkedin.png" alt="LinkedIn Icon"></a>-->
+<!--    </div>-->
+    <div class="address">
+        1234 Foodie Lane, <br> Gourmet City, FL 12345
+    </div>
+</footer>
+</body>
+</html>

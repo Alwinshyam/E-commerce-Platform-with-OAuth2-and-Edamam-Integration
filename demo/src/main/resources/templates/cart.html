@@ -1,0 +1,1152 @@
+<!--<!doctype html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport"-->
+<!--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">-->
+
+<!--    <title>Document</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light" >-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">-->
+<!--            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto"></ul>-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/}" href="#">home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/shop}" href="#">shop</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/cart}" href="#">cart</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <span class="nav-link" th:text="${cartCount}">0</span>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<main>-->
+<!--    <div class="container">-->
+
+<!--        &lt;!&ndash;Section: Block Content&ndash;&gt;-->
+<!--        <section class="mt-5 mb-4">-->
+
+<!--            &lt;!&ndash;Grid row&ndash;&gt;-->
+<!--            <div class="row">-->
+
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-8">-->
+
+<!--                    &lt;!&ndash; Card &ndash;&gt;-->
+<!--                    <div class="card wish-list mb-4">-->
+<!--                        <div class="card-body">-->
+
+<!--                            <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>-->
+
+<!--                            <div class="row mb-4" th:each="item, iStat : ${cart}">-->
+<!--                                <div class="col-md-5 col-lg-3 col-xl-3">-->
+<!--                                    <div class="mb-3 mb-md-0">-->
+<!--                                        <img class="img-fluid w-100"-->
+<!--                                             th:src="@{${'/productImages/' + item.imageName}}"-->
+<!--                                             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-7 col-lg-9 col-xl-9">-->
+<!--                                    <div>-->
+<!--                                        <div class="d-flex justify-content-between">-->
+<!--                                            <div>-->
+<!--                                                <h5 th:text="${item.name}">Blue denim shirt</h5>-->
+<!--                                                <p class="mb-3 text-uppercase small">Weight: <span th:text="${item.weight}"></span> grams</p>-->
+<!--&lt;!&ndash;                                                <p class="mb-2 text-uppercase small">Category: <span th:text="${item.category.name}"></span></p>&ndash;&gt;-->
+
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+<!--                                        <div class="mt-5 d-flex justify-content-between align-items-center">-->
+<!--                                            <div>-->
+<!--                                                <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}"  type="button" class="card-link-secondary small text-uppercase mr-3"><i-->
+<!--                                                        class="fas fa-trash-alt mr-1"></i> Remove item </a>-->
+
+<!--                                            </div>-->
+<!--                                            <p class="mb-0"><span><strong>₹<span th:text="${item.price}"></span></strong></span></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <hr class="mb-4">-->
+
+<!--                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding-->
+<!--                                items to your cart does not mean booking them.</p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+
+
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-4">-->
+
+<!--                    &lt;!&ndash; Card &ndash;&gt;-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+
+<!--                            <h5 class="mb-3">The total amount </h5>-->
+
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">-->
+<!--                                    Amount Payable-->
+<!--                                    <span>₹<span th:text="${total}"></span></span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">-->
+<!--                                    Shipping-->
+<!--                                    <span>Gratis</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">-->
+<!--                                    <div>-->
+<!--                                        <strong>The total amount of</strong>-->
+<!--                                        <strong>-->
+<!--                                            <p class="mb-0">(including VAT)</p>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <span><strong>₹<span th:text="${total}"></span></strong></span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+
+<!--                            <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">go to-->
+<!--                                checkout</a>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Card &ndash;&gt;-->
+
+<!--                    &lt;!&ndash; Card &ndash;&gt;-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+
+<!--                            <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"-->
+<!--                               aria-expanded="false" aria-controls="collapseExample">-->
+<!--                                Add a discount code (optional)-->
+<!--                                <span><i class="fas fa-chevron-down pt-1"></i></span>-->
+<!--                            </a>-->
+
+<!--                            <div class="collapse" id="collapseExample">-->
+<!--                                <div class="mt-3">-->
+<!--                                    <div class="md-form md-outline mb-0">-->
+<!--                                        <input type="text" id="discount-code" class="form-control font-weight-light"-->
+<!--                                               placeholder="Enter discount code">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Card &ndash;&gt;-->
+
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+
+<!--            </div>-->
+<!--            &lt;!&ndash;Grid row&ndash;&gt;-->
+
+<!--        </section>-->
+<!--        &lt;!&ndash;Section: Block Content&ndash;&gt;-->
+
+<!--    </div>-->
+<!--</main>-->
+<!--&lt;!&ndash;Main layout&ndash;&gt;-->
+
+
+
+
+
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">-->
+
+<!--    <title>Cart</title>-->
+<!--    <style>-->
+<!--        .popup {-->
+<!--            position: fixed;-->
+<!--            bottom: 0;-->
+<!--            right: 0;-->
+<!--            width: 300px;-->
+<!--            height: 400px;-->
+<!--            background-color: white;-->
+<!--            border: 1px solid #ddd;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            transform: translateY(100%);-->
+<!--            transition: transform 0.3s ease-in-out;-->
+<!--            z-index: 1000;-->
+<!--        }-->
+<!--        .popup.open {-->
+<!--            transform: translateY(0);-->
+<!--        }-->
+<!--        .popup-header {-->
+<!--            padding: 10px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .popup-body {-->
+<!--            padding: 10px;-->
+<!--        }-->
+<!--        .popup-close {-->
+<!--            position: absolute;-->
+<!--            top: 10px;-->
+<!--            right: 10px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">-->
+<!--            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto"></ul>-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/}" href="#">home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/shop}" href="#">shop</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/cart}" href="#">cart</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <span class="nav-link" th:text="${cartCount}">0</span>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<main>-->
+<!--    <div class="container">-->
+<!--        <section class="mt-5 mb-4">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="card wish-list mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>-->
+<!--                            <div class="row mb-4" th:each="product, iStat : ${cart}">-->
+<!--                                <div class="col-md-5 col-lg-3 col-xl-3">-->
+<!--                                    <div class="mb-3 mb-md-0">-->
+<!--                                        <img class="img-fluid w-100" th:src="@{${'/productImages/' + product.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-7 col-lg-9 col-xl-9">-->
+<!--                                    <div>-->
+<!--                                        <div class="d-flex justify-content-between">-->
+<!--                                            <div>-->
+<!--                                                <h5 th:text="${product.name}">Blue denim shirt</h5>-->
+<!--                                                <p class="mb-3 text-uppercase small">Weight: <span th:text="${product.weight}">N/A</span> grams</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="mt-5 d-flex justify-content-between align-items-center">-->
+<!--                                            <div>-->
+<!--                                                <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button" class="card-link-secondary small text-uppercase mr-3">-->
+<!--                                                    <i class="fas fa-trash-alt mr-1"></i> Remove item </a>-->
+<!--                                            </div>-->
+<!--                                            <p class="mb-0"><span><strong id="summary" th:text="${product.price}">17.99</strong></span></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding items to your cart does not mean booking them.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <a class="btn btn-primary btn-block" th:href="@{/shop}" href="#!">Continue shopping</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4">-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-3">The total amount of</h5>-->
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">-->
+<!--                                    Subtotal-->
+<!--                                    <span th:text="${total}">$25.98</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center px=0">-->
+<!--                                    Shipping-->
+<!--                                    <span>Gratis</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">-->
+<!--                                    <div>-->
+<!--                                        <strong>Total amount</strong>-->
+<!--                                        <strong>-->
+<!--                                            <p class="mb-0">(including VAT)</p>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <span><strong th:text="${total}">$53.98</strong></span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <a th:href="@{/checkout}" class="btn btn-primary btn-block">go to checkout</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Popup for Recipe Recommendations &ndash;&gt;-->
+<!--    <div id="foodPopup" class="popup">-->
+<!--        <div class="popup-header">-->
+<!--            <span>Recipe Recommendations</span>-->
+<!--            <button class="popup-close" aria-label="Close" onclick="closePopup()">&times;</button>-->
+<!--        </div>-->
+<!--        <div class="popup-body">-->
+<!--            <p>Loading recipes...</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--    setTimeout(openPopup, 2000);-->
+
+<!--    // Fetch recipes and display them in the popup-->
+<!--    fetch('/api/getRecipes')-->
+<!--        .then(response => {-->
+<!--            console.log('Fetch response:', response);-->
+<!--            return response.json();-->
+<!--        })-->
+<!--        .then(data => {-->
+<!--            console.log('Recipe data:', data);-->
+<!--            const popupBody = document.querySelector('.popup-body');-->
+<!--            popupBody.innerHTML = '';-->
+<!--            if (data.length === 0) {-->
+<!--                popupBody.innerHTML = '<p>No recipes found.</p>';-->
+<!--            } else {-->
+<!--                data.forEach(recipe => {-->
+<!--                    const recipeElement = document.createElement('div');-->
+<!--                    recipeElement.innerHTML = `<p>${recipe}</p>`;-->
+<!--                    popupBody.appendChild(recipeElement);-->
+<!--                });-->
+<!--            }-->
+<!--        })-->
+<!--        .catch(error => {-->
+<!--            console.error('Error fetching recipes:', error);-->
+<!--            const popupBody = document.querySelector('.popup-body');-->
+<!--            popupBody.innerHTML = '<p>Error fetching recipes.</p>';-->
+<!--        });-->
+<!--});-->
+
+<!--function openPopup() {-->
+<!--    document.getElementById('foodPopup').classList.add('open');-->
+<!--}-->
+
+<!--function closePopup() {-->
+<!--    document.getElementById('foodPopup').classList.remove('open');-->
+<!--}-->
+
+<!--</script>-->
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT1mx88T5Y8R7OJo2l+vGA8mrRXCJoKK1T9JvoRxT2MZieD8lB" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.3.3/dist/umd/popper.min.js" integrity="sha384-QiFTOOBjRz2yVo1q4Xa+aiU5K8arQ6OiEHm/MU6zjKD1THeLrZOxA/bF0PpGInl2" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-Zo5ZUAYjoaFpqGF2LJF0zt3T8bQXGNI93Lwm6V9w/oE1bOHsN7F5Ck6tZTt8q2cz" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">-->
+<!--    <title>Cart</title>-->
+<!--    <style>-->
+<!--        .popup {-->
+<!--            position: fixed;-->
+<!--            bottom: 0;-->
+<!--            right: 0;-->
+<!--            width: 300px;-->
+<!--            height: 400px;-->
+<!--            background-color: white;-->
+<!--            border: 1px solid #ddd;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            transform: translateY(100%);-->
+<!--            transition: transform 0.3s ease-in-out;-->
+<!--            z-index: 1000;-->
+<!--            overflow-y: auto;-->
+<!--        }-->
+<!--        .popup.open {-->
+<!--            transform: translateY(0);-->
+<!--        }-->
+<!--        .popup-header {-->
+<!--            padding: 10px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .popup-body {-->
+<!--            padding: 10px;-->
+<!--        }-->
+<!--        .popup-close {-->
+<!--            position: absolute;-->
+<!--            top: 10px;-->
+<!--            right: 10px;-->
+<!--            cursor: pointer;-->
+<!--            background: none;-->
+<!--            border: none;-->
+<!--            color: white;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">-->
+<!--            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="Logo"/>-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto"></ul>-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/}" href="#">Home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active" sec:authorize="isAnonymous()">-->
+<!--                    <a class="nav-link" th:href="@{/login}" href="#">Login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active" sec:authorize="isAuthenticated()">-->
+<!--                    <a class="nav-link" th:href="@{/logout}" href="#">Logout</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <span class="nav-link" th:text="${cartCount}">0</span>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<main>-->
+<!--    <div class="container">-->
+<!--        <section class="mt-5 mb-4">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="card wish-list mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>-->
+<!--                            <div class="row mb-4" th:each="product, iStat : ${cart}">-->
+<!--                                <div class="col-md-5 col-lg-3 col-xl-3">-->
+<!--                                    <div class="mb-3 mb-md-0">-->
+<!--                                        <img class="img-fluid w-100" th:src="@{${'/productImages/' + product.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Product Image">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-7 col-lg-9 col-xl-9">-->
+<!--                                    <div>-->
+<!--                                        <div class="d-flex justify-content-between">-->
+<!--                                            <div>-->
+<!--                                                <h5 th:text="${product.name}">Blue denim shirt</h5>-->
+<!--                                                <p class="mb-3 text-uppercase small">Weight: <span th:text="${product.weight}">N/A</span> grams</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="mt-5 d-flex justify-content-between align-items-center">-->
+<!--                                            <div>-->
+<!--                                                <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button" class="card-link-secondary small text-uppercase mr-3">-->
+<!--                                                    <i class="fas fa-trash-alt mr-1"></i> Remove item </a>-->
+<!--                                            </div>-->
+<!--                                            <p class="mb-0"><span><strong id="summary" th:text="${product.price}">17.99</strong></span></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding items to your cart does not mean booking them.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <a class="btn btn-primary btn-block" th:href="@{/shop}" href="#!">Continue shopping</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4">-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-3">The total amount of</h5>-->
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">-->
+<!--                                    Subtotal-->
+<!--                                    <span th:text="${total}">$25.98</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center px=0">-->
+<!--                                    Shipping-->
+<!--                                    <span>Gratis</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">-->
+<!--                                    <div>-->
+<!--                                        <strong>Total amount</strong>-->
+<!--                                        <strong>-->
+<!--                                            <p class="mb-0">(including VAT)</p>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <span><strong th:text="${total}">$53.98</strong></span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <a th:href="@{/checkout}" class="btn btn-primary btn-block">Go to checkout</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Popup for Recipe Recommendations &ndash;&gt;-->
+<!--<div id="foodPopup" class="popup">-->
+<!--    <div class="popup-header">-->
+<!--        <span>Recipe Recommendations</span>-->
+<!--        <button class="popup-close" aria-label="Close" onclick="closePopup()">&times;</button>-->
+<!--    </div>-->
+<!--    <div class="popup-body">-->
+<!--        <p>Loading recipes...</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--document.addEventListener("DOMContentLoaded", function() {-->
+<!--    setTimeout(openPopup, 2000);-->
+
+<!--    // Fetch recipes and display them in the popup-->
+<!--    fetch('/api/getRecipes')-->
+<!--    .then(response => {-->
+<!--        if (!response.ok) {-->
+<!--            throw new Error(`HTTP error! status: ${response.status}`);-->
+<!--        }-->
+<!--        return response.json();-->
+<!--    })-->
+<!--    .then(data => {-->
+<!--        console.log('Recipe data:', data);-->
+<!--        const popupBody = document.querySelector('.popup-body');-->
+<!--        popupBody.innerHTML = '';-->
+<!--        if (data.recipes && data.recipes.length > 0) {-->
+<!--            data.recipes.forEach((recipe, index) => {-->
+<!--                const recipeElement = document.createElement('div');-->
+<!--                recipeElement.innerHTML = `-->
+<!--                    <h5>${index + 1}. ${recipe}</h5>-->
+<!--                    ${data.images && data.images[index] ? `<img src="${data.images[index]}" alt="${recipe}" style="width: 100%; height: auto; margin-bottom: 10px;">` : ''}-->
+<!--                `;-->
+<!--                popupBody.appendChild(recipeElement);-->
+<!--            });-->
+<!--        } else {-->
+<!--            popupBody.innerHTML = '<p>No recipes found.</p>';-->
+<!--        }-->
+<!--    })-->
+<!--    .catch(error => {-->
+<!--        console.error('Error fetching recipes:', error);-->
+<!--        const popupBody = document.querySelector('.popup-body');-->
+<!--        popupBody.innerHTML = '<p>Error fetching recipes.</p>';-->
+<!--    });-->
+<!--});-->
+
+<!--function openPopup() {-->
+<!--    document.getElementById('foodPopup').classList.add('open');-->
+<!--}-->
+
+<!--function closePopup() {-->
+<!--    document.getElementById('foodPopup').classList.remove('open');-->
+<!--}-->
+<!--</script>-->
+
+
+
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT1mx88T5Y8R7OJo2l+vGA8mrRXCJoKK1T9JvoRxT2MZieD8lB" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.3.3/dist/umd/popper.min.js" integrity="sha384-QiFTOOBjRz2yVo1q4Xa+aiU5K8arQ6OiEHm/MU6zjKD1THeLrZOxA/bF0PpGInl2" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-Zo5ZUAYjoaFpqGF2LJF0zt3T8bQXGNI93Lwm6V9w/oE1bOHsN7F5Ck6tZTt8q2cz" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">-->
+<!--    <title>Cart</title>-->
+<!--    <style>-->
+<!--        /* Popup Container */-->
+<!--.popup {-->
+<!--    position: fixed;-->
+<!--    top: 50%;-->
+<!--    left: 50%;-->
+<!--    transform: translate(-50%, -50%);-->
+<!--    width: 80%; /* Increase the width */-->
+<!--    max-width: 800px; /* Set a max width */-->
+<!--    height: 80%; /* Increase the height */-->
+<!--    max-height: 600px; /* Set a max height */-->
+<!--    background-color: white;-->
+<!--    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--    border-radius: 8px;-->
+<!--    overflow-y: auto;-->
+<!--    z-index: 1000;-->
+<!--    display: none; /* Initially hidden */-->
+<!--}-->
+
+<!--.popup.open {-->
+<!--    display: block; /* Show when open */-->
+<!--}-->
+
+<!--/* Popup Header */-->
+<!--.popup-header {-->
+<!--    padding: 10px 20px;-->
+<!--    background-color: #f5f5f5;-->
+<!--    border-bottom: 1px solid #ddd;-->
+<!--    display: flex;-->
+<!--    justify-content: space-between;-->
+<!--    align-items: center;-->
+<!--    border-top-left-radius: 8px;-->
+<!--    border-top-right-radius: 8px;-->
+<!--}-->
+
+<!--.popup-header span {-->
+<!--    font-weight: bold;-->
+<!--    font-size: 1.2em;-->
+<!--}-->
+
+<!--.popup-close {-->
+<!--    background: none;-->
+<!--    border: none;-->
+<!--    font-size: 1.5em;-->
+<!--    cursor: pointer;-->
+<!--}-->
+
+<!--/* Popup Body */-->
+<!--.popup-body {-->
+<!--    padding: 20px;-->
+<!--}-->
+
+<!--/* Ensure images are responsive */-->
+<!--.popup-body img {-->
+<!--    width: 100%;-->
+<!--    height: auto;-->
+<!--    margin-bottom: 10px;-->
+<!--}-->
+
+<!--        .popup-close {-->
+<!--            position: absolute;-->
+<!--            top: 10px;-->
+<!--            right: 10px;-->
+<!--            cursor: pointer;-->
+<!--            background: none;-->
+<!--            border: none;-->
+<!--            color: white;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">-->
+<!--            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="Logo"/>-->
+<!--        </a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav mr-auto"></ul>-->
+<!--            <ul class="navbar-nav">-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/}" href="#">Home</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active" sec:authorize="isAnonymous()">-->
+<!--                    <a class="nav-link" th:href="@{/login}" href="#">Login</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active" sec:authorize="isAuthenticated()">-->
+<!--                    <a class="nav-link" th:href="@{/logout}" href="#">Logout</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item active">-->
+<!--                    <span class="nav-link" th:text="${cartCount}">0</span>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<main>-->
+<!--    <div class="container">-->
+<!--        <section class="mt-5 mb-4">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-8">-->
+<!--                    <div class="card wish-list mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>-->
+<!--                            <div class="row mb-4" th:each="product, iStat : ${cart}">-->
+<!--                                <div class="col-md-5 col-lg-3 col-xl-3">-->
+<!--                                    <div class="mb-3 mb-md-0">-->
+<!--                                        <img class="img-fluid w-100" th:src="@{${'/productImages/' + product.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Product Image">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-7 col-lg-9 col-xl-9">-->
+<!--                                    <div>-->
+<!--                                        <div class="d-flex justify-content-between">-->
+<!--                                            <div>-->
+<!--                                                <h5 th:text="${product.name}">Blue denim shirt</h5>-->
+<!--                                                <p class="mb-3 text-uppercase small">Weight: <span th:text="${product.weight}">N/A</span> grams</p>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="mt-5 d-flex justify-content-between align-items-center">-->
+<!--                                            <div>-->
+<!--                                                <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button" class="card-link-secondary small text-uppercase mr-3">-->
+<!--                                                    <i class="fas fa-trash-alt mr-1"></i> Remove item </a>-->
+<!--                                            </div>-->
+<!--                                            <p class="mb-0"><span><strong id="summary" th:text="${product.price}">17.99</strong></span></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding items to your cart does not mean booking them.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <a class="btn btn-primary btn-block" th:href="@{/shop}" href="#!">Continue shopping</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4">-->
+<!--                    <div class="card mb-4">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="mb-3">The total amount of</h5>-->
+<!--                            <ul class="list-group list-group-flush">-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">-->
+<!--                                    Subtotal-->
+<!--                                    <span th:text="${total}">$25.98</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center px=0">-->
+<!--                                    Shipping-->
+<!--                                    <span>Gratis</span>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">-->
+<!--                                    <div>-->
+<!--                                        <strong>Total amount</strong>-->
+<!--                                        <strong>-->
+<!--                                            <p class="mb-0">(including VAT)</p>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <span><strong th:text="${total}">$53.98</strong></span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <a th:href="@{/checkout}" class="btn btn-primary btn-block">Go to checkout</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Popup for Recipe Recommendations &ndash;&gt;-->
+<!--<div id="foodPopup" class="popup">-->
+<!--    <div class="popup-header">-->
+<!--        <span>Recipe Recommendations</span>-->
+<!--        <button class="popup-close" aria-label="Close" onclick="closePopup()">&times;</button>-->
+<!--    </div>-->
+<!--    <div class="popup-body">-->
+<!--        <p>Loading recipes...</p>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<script>-->
+<!--document.addEventListener("DOMContentLoaded", function() {-->
+<!--    setTimeout(openPopup, 2000);-->
+
+<!--    // Fetch recipes and display them in the popup-->
+<!--    fetch('/api/getRecipes')-->
+<!--    .then(response => {-->
+<!--        if (!response.ok) {-->
+<!--            throw new Error(`HTTP error! status: ${response.status}`);-->
+<!--        }-->
+<!--        return response.json();-->
+<!--    })-->
+<!--    .then(data => {-->
+<!--        console.log('Recipe data:', data);-->
+<!--        const popupBody = document.querySelector('.popup-body');-->
+<!--        popupBody.innerHTML = '';-->
+<!--        if (data.recipes && data.recipes.length > 0) {-->
+<!--            data.recipes.forEach((recipe, index) => {-->
+<!--                const recipeElement = document.createElement('div');-->
+<!--                recipeElement.innerHTML = `-->
+<!--                    <h5>${index + 1}. ${recipe}</h5>-->
+<!--                    ${data.images && data.images[index] ? `<img src="${data.images[index]}" alt="${recipe}" style="width: 100%; height: auto; margin-bottom: 10px;">` : ''}-->
+<!--                `;-->
+<!--                popupBody.appendChild(recipeElement);-->
+<!--            });-->
+<!--        } else {-->
+<!--            popupBody.innerHTML = '<p>No recipes found.</p>';-->
+<!--        }-->
+<!--    })-->
+<!--    .catch(error => {-->
+<!--        console.error('Error fetching recipes:', error);-->
+<!--        const popupBody = document.querySelector('.popup-body');-->
+<!--        popupBody.innerHTML = '<p>Error fetching recipes.</p>';-->
+<!--    });-->
+<!--});-->
+
+<!--function openPopup() {-->
+<!--    document.getElementById('foodPopup').classList.add('open');-->
+<!--}-->
+
+<!--function closePopup() {-->
+<!--    document.getElementById('foodPopup').classList.remove('open');-->
+<!--}-->
+
+<!--</script>-->
+
+
+
+<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT1mx88T5Y8R7OJo2l+vGA8mrRXCJoKK1T9JvoRxT2MZieD8lB" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.3.3/dist/umd/popper.min.js" integrity="sha384-QiFTOOBjRz2yVo1q4Xa+aiU5K8arQ6OiEHm/MU6zjKD1THeLrZOxA/bF0PpGInl2" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-Zo5ZUAYjoaFpqGF2LJF0zt3T8bQXGNI93Lwm6V9w/oE1bOHsN7F5Ck6tZTt8q2cz" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <title>Cart</title>
+    <style>
+        /* Popup Container */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            height: 80%;
+            max-height: 600px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .popup.open {
+            display: block;
+        }
+
+        .popup.minimized {
+            top: auto;
+            bottom: 0;
+            transform: translate(-50%, 0);
+            height: 40px;
+            overflow: hidden;
+        }
+
+        /* Popup Header */
+        .popup-header {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .popup-header span {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .popup-close, .popup-minimize {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Popup Body */
+        .popup-body {
+            padding: 20px;
+        }
+
+        /* Ensure images are responsive */
+        .popup-body img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}" src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="Logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/shop}" href="#">Shop</a>
+                </li>
+                <li class="nav-item active" sec:authorize="isAnonymous()">
+                    <a class="nav-link" th:href="@{/login}" href="#">Login</a>
+                </li>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/logout}" href="#">Logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/cart}" href="#">Cart</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="nav-link" th:text="${cartCount}">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="container">
+        <section class="mt-5 mb-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card wish-list mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">Cart (<span th:text="${cartCount}">2</span> items)</h5>
+                            <div class="row mb-4" th:each="product, iStat : ${cart}">
+                                <div class="col-md-5 col-lg-3 col-xl-3">
+                                    <div class="mb-3 mb-md-0">
+                                        <img class="img-fluid w-100" th:src="@{${'/productImages/' + product.imageName}}" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Product Image">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-lg-9 col-xl-9">
+                                    <div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 th:text="${product.name}">Blue denim shirt</h5>
+                                                <p class="mb-3 text-uppercase small">Weight: <span th:text="${product.weight}">N/A</span> grams</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a href="#!" th:href="@{/cart/removeItem/{index}(index=${iStat.index})}" type="button" class="card-link-secondary small text-uppercase mr-3">
+                                                    <i class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                                            </div>
+                                            <p class="mb-0"><span><strong id="summary" th:text="${product.price}">17.99</strong></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding items to your cart does not mean booking them.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <a class="btn btn-primary btn-block" th:href="@{/shop}" href="#!">Continue shopping</a>
+                            <button class="btn btn-secondary btn-block" onclick="openPopup()">Show Recommended Food</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3">The total amount of</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    Subtotal
+                                    <span th:text="${total}">$25.98</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center px=0">
+                                    Shipping
+                                    <span>Gratis</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <div>
+                                        <strong>Total amount</strong>
+                                        <strong>
+                                            <p class="mb-0">(including VAT)</p>
+                                        </strong>
+                                    </div>
+                                    <span><strong th:text="${total}">$53.98</strong></span>
+                                </li>
+                            </ul>
+                            <a th:href="@{/checkout}" class="btn btn-primary btn-block">Go to checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Popup for Recipe Recommendations -->
+<div id="foodPopup" class="popup">
+    <div class="popup-header">
+        <span>Recipe Recommendations</span>
+        <div>
+            <button class="popup-minimize" aria-label="Minimize" onclick="toggleMinimizePopup()">&#x2212;</button>
+            <button class="popup-close" aria-label="Close" onclick="closePopup()">&times;</button>
+        </div>
+    </div>
+    <div class="popup-body">
+        <div id="results"></div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    async function fetchRecipes() {
+        const response = await fetch('/api/getRecipes');
+        const data = await response.json();
+        displayRecipes(data.recipes);
+    }
+
+    function displayRecipes(recipes) {
+        const resultsList = document.getElementById('results');
+        let html = '';
+        recipes.forEach(recipe => {
+            html += `
+            <div>
+                <img src="${recipe.image}" alt="${recipe.label}">
+                <h3>${recipe.label}</h3>
+                <a href="${recipe.url}" target="_blank">View Recipe</a>
+            </div>
+            `;
+        });
+        resultsList.innerHTML = html;
+    }
+
+    window.openPopup = function() {
+        document.getElementById("foodPopup").classList.add("open");
+        fetchRecipes();
+    };
+
+    window.closePopup = function() {
+        document.getElementById("foodPopup").classList.remove("open");
+    };
+
+    window.toggleMinimizePopup = function() {
+        const popup = document.getElementById("foodPopup");
+        if (popup.classList.contains("minimized")) {
+            popup.classList.remove("minimized");
+        } else {
+            popup.classList.add("minimized");
+        }
+    };
+});
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2poTnRbW1jnu1y4IVp2k1arJoVo2ELR7z8MQTJ0y5K4tu0PBK4pDJ" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzQ1p3/7K6pt/6Pi0i3zYjQ8t3B4qqyK8WX7Im3i9g4/" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-qw+qIk+Qe6x5m0rPh+7PBMOzKTj2lXv2D5pMoIJl9pLrdTDTjSllxZvsjzk7KOAj" crossorigin="anonymous"></script>
+</body>
+</html>
